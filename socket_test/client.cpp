@@ -7,6 +7,10 @@
 #include <netdb.h>
 #include <unistd.h>
 
+int fps = 30;
+double sleep_time = 1/fps;
+std::string destination="192.168.100.1"
+
 int main() {
   /* IP アドレス、ポート番号、ソケット */
   char destination[80];
@@ -23,8 +27,8 @@ int main() {
 
   /************************************************************/
   /* 相手先アドレスの入力 */
-  printf("Connect to ? : (name or IP address) ");
-  scanf("%s", destination);
+  //printf("Connect to ? : (name or IP address) ");
+  //scanf("%s", destination);
 
   /* sockaddr_in 構造体のセット */
   memset(&dstAddr, 0, sizeof(dstAddr));
@@ -43,7 +47,7 @@ int main() {
   for(int i=0; i<10; i++) {
     printf("sending...\n");
     send(dstSocket, toSendText, strlen(toSendText)+1, 0);
-    sleep(1);
+    sleep(sleep_time);
   }
 
   /* ソケット終了 */
